@@ -2,7 +2,7 @@ body{
     max-width: 100vw!important;
     overflow-x: hidden!important;
 }
-/* General Styles */
+
 .black-bg {
     background-color: #010101;
 }
@@ -12,7 +12,6 @@ body{
     --translateZ: 150px;
 }
 
-/* Header Styling */
 header {
     color: #eee;
     display: flex;
@@ -25,7 +24,6 @@ header {
     font-family: 'Poppins', sans-serif;
 }
 
-/* Cube Styling */
 .cube-container {
     perspective: 1000px;
 }
@@ -84,25 +82,24 @@ header {
     transform: rotateX(-90deg) translateZ(var(--translateZ));
 }
 
-/* Custom Dark Card */
+
 .custom-dark-card {
-    background-color: #343a40!important; /* Dark Slate Gray */
-    color: #FFFFFF!important; /* White text for contrast */
-    border: none!important; /* Remove default border */
+    background-color: #343a40!important; 
+    color: #FFFFFF!important; 
+    border: none!important; 
 }
 
 .custom-dark-card .card-header,
 .custom-dark-card .card-footer {
-    background-color: #2c2f33!important; /* Slightly darker for header and footer */
-    color: #FFFFFF!important; /* White text for contrast */
+    background-color: #2c2f33!important;
+    color: #FFFFFF!important;
 }
 
 .custom-dark-card .card-title,
 .custom-dark-card .card-text {
-    color: #FFFFFF!important; /* White text for contrast */
+    color: #FFFFFF!important; 
 }
 
-/* Category Styling */
 .category {
     height: 100vh;
 }
@@ -117,7 +114,6 @@ header {
     border-color: white;
 }
 
-/* Section Text Styling */
 .sectionText h1 {
     font-size: 15rem;
     opacity: 0.5;
@@ -126,8 +122,7 @@ header {
 
 .sectionText {
     position: absolute;
-    transition: transform 1s, opacity 1s;
-    opacity: 0;
+    opacity: 1;
 }
 
 .sectionText.slide-in-left {
@@ -148,7 +143,6 @@ header {
     transform: translateX(100%);
 }
 
-/* Card and Image Styles */
 .card.custom-dark-card {
     background-color: #343a40!important;
     color: #ffffff!important;
@@ -167,17 +161,13 @@ header {
     border-color: #ffffff;
 }
 
-/* Section Text Styling */
 .sectionText h1 {
     font-size: 15rem;
-    opacity: 0.5;
     font-weight: bold;
 }
 
 .sectionText {
     position: absolute;
-    transition: transform 1s, opacity 1s;
-    opacity: 0;
 }
 
 .sectionText.slide-in-left {
@@ -200,7 +190,6 @@ header {
 
 .contacts{
     height: 10vh;
-    background: #2C2C2C;
     color: white;
     font-family: 'poppins';
 }
@@ -218,10 +207,16 @@ header {
 
 .modal-dialog{
     max-width: 45rem!important;
+    height: 100vh;
+    display: flex;
 }
 
 .modal-header {
     border-bottom: grey 1px solid!important;
+}
+
+.modal-content{
+    margin: auto;
 }
 
 .modal-title {
@@ -247,11 +242,9 @@ header {
 
 .sectionText {
     position: absolute;
-    transition: transform 1s, opacity 1s;
-    opacity: 0;
-    max-width: 100%; /* Ensure sliding elements respect container's max-width */
-    white-space: nowrap; /* Prevent wrapping */
-    overflow: hidden; /* Hide any content that exceeds max-width */
+    max-width: 100%; 
+    white-space: nowrap; 
+    overflow: hidden; 
 }
 
 .sectionText.slide-in-left, 
@@ -260,45 +253,43 @@ header {
     opacity: 1;
 }
 
-/* Adjust width if necessary */
 .sectionText.slide-in-left h1,
 .sectionText.slide-in-right h1 {
-    width: 100%; /* Ensure the width does not exceed the container */
+    width: 100%; 
 }
 
 
 @media (max-width: 768px) {
-    /* Adjust font sizes */
+   
     .sectionText h1 {
         font-size: 5rem!important;
         margin: 7rem 0!important;
     }
 
     .cube-container .cube {
-        font-size: 20px; /* Adjust font size for cube faces */
+        font-size: 20px; 
     }
 
-    /* Adjust modal styles for smaller screens */
+    
     .modal-dialog {
-        max-width: 90vw!important; /* Adjust modal width */
+        max-width: 90vw!important;
     }
 
     .modal-content {
-        padding: 10px!important; /* Adjust padding in modal content */
+        padding: 10px!important; 
     }
 
     .modal-title {
-        font-size: 1.5rem!important; /* Adjust modal title font size */
+        font-size: 1.5rem!important; 
     }
 
     .contacts {
-        height: 20vh; /* Adjust height of contacts section for responsiveness */
+        height: 20vh; 
     }
     .left{
         z-index: 3;
         background: rgba(0, 0, 0, 0.5);
         border-radius: 1rem;
-        position: absolute;
         padding: 1rem;
     }
     .floatingButton{
@@ -306,7 +297,11 @@ header {
     }
 
     .sub-heading{
-        text-align: center
+        text-align: center;
+    }
+
+    .card.custom-dark-card .card-body img{
+        height: 100px;
     }
 }
 
@@ -315,6 +310,16 @@ header {
     .sectionText h1 {
         font-size: 3rem!important;
         margin: 12rem 0!important;
+    }
+
+    .cube-container{
+        width: -webkit-fill-available;
+        display: flex;
+        justify-content: center;
+    }
+
+    .left{
+        position: absolute;
     }
 
 }
