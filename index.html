@@ -15,16 +15,17 @@
 </head>
 
 <body class="black-bg">
-    <div class="container">
+    <section class="container">
         <header id="header">
             <div class="left">
                 <h1>Christian James Santos</h1>
                 <p class="sub-heading">"All roads lead to me..."</p>
                 <button id="connectBtn" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">&#9993; Let's Connect!</button>
+                <a href="#skills" class="btn btn-outline-light">&#10515; My skills </a>
                 <!-- Modal -->
                 <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content">
+                        <div class="modal-content z-3">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="contactModalLabel">Contact Information</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -47,7 +48,7 @@
                     </div>
                 </div>
                 &nbsp;
-                <a href="#category" class="btn btn-outline-light">&#10515; See my work </a>
+
             </div>
             <div class="cube-container">
                 <div class="cube">
@@ -61,240 +62,239 @@
                 </div>
             </div>
         </header>
-    </div>
+    </section>
 
-    <!-- Example buttons to switch carousel -->
-    <div class="container-fluid" id="category">
-        <div class="category py-5 d-flex justify-content-center flex-column">
-            <hr style="color: white;">
-            <h2 class="text-center" style="color: white; font-family: 'poppins';">Work Category</h2>
-            <hr class="py-3" style="color: white;">
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center">
-                    <button type="button" class="btn btn-outline-light" onclick="showCarouselItem(0)">@ Web Development</button>
-                </div>
-                <div class="col-12 d-flex justify-content-center">
-                    <button type="button" class="btn btn-outline-light" onclick="showCarouselItem(1)">&#x2713; Virtual Assistant</button>
-                </div>
-                <div class="col-12 d-flex justify-content-center">
-                    <button type="button" class="btn btn-outline-light" onclick="showCarouselItem(2)">&#9738; Video/Graphics Editor</button>
-                </div>
-                <div class="col-12 d-flex justify-content-center">
-                    <button type="button" class="btn btn-outline-light" onclick="showCarouselItem(3)">&#9733; Social Media Management/Marketing</button>
-                </div>
-                <div class="col-12 d-flex justify-content-center">
-                    <button type="button" class="btn btn-outline-light" onclick="showCarouselItem(4)">&#8519; ESL Teacher</button>
+    <section class="skills container-fluid p-lg-5 d-flex justify-content-center flex-column" id="skills">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card position-sticky h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-center">
+                            <img src="./styles/images/chris.jpg" alt="An image of Christian James Santos." height="200" class="rounded">
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                                <h4 class="shadow-sm p-2">@</h4>
+                            </div>
+                            <div class="col-10">
+                                <small>EMAIL</small>
+                                <h6>cjsantos2411638@gmail.com</h6>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                                <h4 class="shadow-sm p-2">#</h4>
+                            </div>
+                            <div class="col-10">
+                                <small>PHONE</small>
+                                <h6>(+63) 968 240 7573</h6>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                                <h4 class="shadow-sm p-2">^</h4>
+                            </div>
+                            <div class="col-10">
+                                <small>BIRTHDATE</small>
+                                <h6>March 26, 2006</h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <hr class="mt-5" style="color: white;">
+            <div class="col-lg-9">
+                <div id="carouselExample" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="card p-3">
+                                <h3 class="text-center">&lt;&gt;&nbsp;Programming&nbsp;&lt;&gt;</h3>
+                                <hr>
+                                <div class="skill1 row px-lg-5">
+                                    <h4>HTML, CSS, Bootstrap</h4>
+                                    <div class="progress ps-0" role="progressbar" aria-label="HTML, CSS, Bootstrap"
+                                        aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-dark" style="width: 90%">90%</div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="skill2 row px-lg-5">
+                                    <h4>JavaScript, PHP, SQL</h4>
+                                    <div class="progress ps-0" role="progressbar" aria-label="JavaScript, PHP, SQL"
+                                        aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-dark" style="width: 70%">70%</div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="skill3 row px-lg-5">
+                                    <h4>Laravel</h4>
+                                    <div class="progress ps-0" role="progressbar" aria-label="Laravel" aria-valuenow="70"
+                                        aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-dark" style="width: 70%">70%</div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="skill4 row px-lg-5">
+                                    <h4>Python</h4>
+                                    <div class="progress ps-0" role="progressbar" aria-label="Python" aria-valuenow="60"
+                                        aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-dark" style="width: 60%">60%</div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="skill5 row px-lg-5">
+                                    <h4>Node.js</h4>
+                                    <div class="progress ps-0" role="progressbar" aria-label="Node" aria-valuenow="50"
+                                        aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-dark" style="width: 50%">50%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card p-3">
+                                <h3 class="text-center">~&nbsp;Virtual Assistance&nbsp;~</h3>
+                                <hr>
+                                <div class="skill1 row px-lg-5">
+                                    <h4>Social Media Manager</h4>
+                                    <div class="progress ps-0" role="progressbar" aria-label="SocMedManager"
+                                        aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-dark" style="width: 90%">90%</div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="skill2 row px-lg-5">
+                                    <h4>Lead Gen</h4>
+                                    <div class="progress ps-0" role="progressbar" aria-label="LeadGen"
+                                        aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-dark" style="width: 90%">90%</div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="skill3 row px-lg-5">
+                                    <h4>Video Editing</h4>
+                                    <div class="progress ps-0" role="progressbar" aria-label="VidEditing" aria-valuenow="70"
+                                        aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-dark" style="width: 70%">70%</div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="skill4 row px-lg-5">
+                                    <h4>Email Marketing</h4>
+                                    <div class="progress ps-0" role="progressbar" aria-label="EmailMarketing" aria-valuenow="60"
+                                        aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-dark" style="width: 60%">60%</div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="skill5 row px-lg-5">
+                                    <h4>Admin Assistance</h4>
+                                    <div class="progress ps-0" role="progressbar" aria-label="AdminAssist" aria-valuenow="60"
+                                        aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-dark" style="width: 60%">60%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card p-3">
+                                <h3 class="text-center">--&nbsp;Others&nbsp;--</h3>
+                                <hr>
+                                <div class="skill1 row px-lg-5">
+                                    <h4>English Verbal And Written Skills</h4>
+                                    <div class="progress ps-0" role="progressbar" aria-label="EmailMarketing" aria-valuenow="97"
+                                        aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-dark" style="width: 97%">97%</div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="skill2 row px-lg-5">
+                                    <h4>Information And Communications Technology</h4>
+                                    <div class="progress ps-0" role="progressbar" aria-label="SocMedManager"
+                                        aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-dark" style="width: 90%">90%</div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="skill3 row px-lg-5">
+                                    <h4>Computer System Servicing</h4>
+                                    <div class="progress ps-0" role="progressbar" aria-label="LeadGen"
+                                        aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-dark" style="width: 90%">90%</div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="skill4 row px-lg-5">
+                                    <h4>Research and Analysis</h4>
+                                    <div class="progress ps-0" role="progressbar" aria-label="VidEditing" aria-valuenow="89"
+                                        aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-dark" style="width: 89%">89%</div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="skill5 row px-lg-5">
+                                    <h4>Data Management</h4>
+                                    <div class="progress ps-0" role="progressbar" aria-label="AdminAssist" aria-valuenow="75"
+                                        aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-dark" style="width: 75%">75%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Adjusted carousel controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev"
+                        style="left: -2em;">
+                        <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next"
+                        style="right: -2em;">
+                        <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            
         </div>
-    </div>
+    </section>
 
-    <!-- Web Development Section -->
-    <div id="carouselExample" class="carousel slide">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="container position-relative category section d-flex justify-content-center flex-column" id="webDev">
-                    <div class="sectionText position-absolute top-0 start-0">
-                        <h1 class="text-center" style="color: white;">WEB</h1>
-                    </div>
-                    <div class="sectionText position-absolute bottom-0 end-0">
-                        <h1 class="text-center" style="color: white;">DEV</h1>
-                    </div>
-                    <div class="d-flex justify-content-center flex-column">
-                        <div class="row">
-                            <div class="col-lg-6 my-1">
-                                <div class="card custom-dark-card">
-                                    <div class="card-body">
-                                        <img src="./styles/images/ictpediafulllogo.png" alt="ICTpedia-V2" class="img-fluid">
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-center">
-                                        <a class="btn btn-outline-light" href="https://github.com/shijisan/ICTpedia-V2">&#x27A4; View on Github</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 my-1">
-                                <div class="card custom-dark-card">
-                                    <div class="card-body">
-                                        <img src="./styles/images/researchnoobfulllogo.png" alt="ResearchNoob" class="img-fluid">
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-center">
-                                        <a class="btn btn-outline-light" href="https://github.com/shijisan/ResearchNoob">&#x27A4; View on Github</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <section class="certificates container-fluid px-lg-5">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">[&nbsp;Certificates&nbsp;]</h3>
             </div>
-
-            <div class="carousel-item">
-                <!-- Virtual Assistant Section -->
-                <div class="container position-relative category section d-flex justify-content-center flex-column" id="virtualAssistant">
-                    <div class="sectionText position-absolute top-0 start-0">
-                        <h1 class="text-center" style="color: white;">VIRTUAL</h1>
-                    </div>
-                    <div class="sectionText position-absolute bottom-0 end-0">
-                        <h1 class="text-center" style="color: white;">ASSIST</h1>
-                    </div>
-                    <div class="d-flex justify-content-center flex-column">
-                        <div class="row">
-                            <div class="col-lg-3 col-12">
-                                <div class="card custom-dark-card">
-                                    <div class="card-body d-flex flex-column text-center">
-                                        <img src="https://avatar.iran.liara.run/public/girl" alt="India" class="img-fluid m-auto">
-                                        <h3 class="py-lg-2">India</h3>
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-center">
-                                        <a class="btn btn-outline-light" href="https://drive.google.com/drive/folders/1sO_QEV9yY-MjKiXTGfkVyGaAGBGL8FY0?usp=drive_link">&#x27A4; View on Google Drive</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-12">
-                                <div class="card custom-dark-card">
-                                    <div class="card-body d-flex flex-column text-center">
-                                        <img src="https://avatar.iran.liara.run/public/girl" alt="Lisa McFarland" class="img-fluid m-auto">
-                                        <h3 class="py-lg-2">Lisa McFarland</h3>
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-center">
-                                        <a class="btn btn-outline-light" href="https://drive.google.com/drive/folders/1UZmaU1zzfCy0WlfywG1cSpV-3HxrpO4e?usp=drive_link">&#x27A4; View on Google Drive</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-12">
-                                <div class="card custom-dark-card">
-                                    <div class="card-body d-flex flex-column text-center">
-                                        <img src="https://avatar.iran.liara.run/public/boy" alt="RKDS Advertisement" class="img-fluid m-auto">
-                                        <h3 class="py-lg-2">RKDS Advertisement</h3>
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-center">
-                                        <a class="btn btn-outline-light" href="https://drive.google.com/drive/folders/10tijP2agnjYmZcSaTa7AQwjcfqp5VdwJ?usp=sharing">&#x27A4; View on Google Drive</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <!-- Video/Graphics Editor Section -->
-                <div class="container position-relative category section d-flex justify-content-center flex-column" id="videoGraphicsEditor">
-                    <div class="sectionText position-absolute top-0 start-0">
-                        <h1 class="text-center" style="color: white;">VIDEO</h1>
-                    </div>
-                    <div class="sectionText position-absolute bottom-0 end-0">
-                        <h1 class="text-center" style="color: white;">GRAPHICS</h1>
-                    </div>
-                    <div class="d-flex justify-content-center flex-column">
-                        <div class="row">
-                            <div class="col">
-                                <div class="card custom-dark-card">
-                                    <div class="card-body d-flex flex-column text-center" style="background-color: #f2f2f2;">
-                                        <img src="./styles/images/multimedia.png" alt="RKDS Advertisement" class="img-fluid m-auto">
-                                        <h3 class="py-lg-2" style="color: black;">RKDS Advertisement</h3>
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-center">
-                                        <a class="btn btn-outline-light" href="https://drive.google.com/file/d/11gnEwiQPMoOwOlNCwKtB3m05cfinqUu3/view?usp=sharing">&#x27A4; View on Google Drive</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card custom-dark-card">
-                                    <div class="card-body d-flex flex-column text-center" style="background-color: #f2f2f2;">
-                                        <img src="./styles/images/multimedia.png" alt="Shortform video" class="img-fluid m-auto">
-                                        <h3 class="py-lg-2" style="color: black;">Shortform video</h3>
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-center">
-                                        <a class="btn btn-outline-light" href="https://drive.google.com/file/d/1JuSP0buZLsWpR-Ptpp4BhyXrFbfL8sfP/view?usp=sharing">&#x27A4; View on Google Drive</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <!-- Social Media Management/Marketing Section -->
-                <div class="container position-relative category section d-flex justify-content-center flex-column" id="socialMediaManager">
-                    <div class="sectionText position-absolute top-0 start-0">
-                        <h1 class="text-center" style="color: white;">SOCMED</h1>
-                    </div>
-                    <div class="sectionText position-absolute bottom-0 end-0">
-                        <h1 class="text-center" style="color: white;">EXPERT</h1>
-                    </div>
-                    <div class="d-flex justify-content-center flex-column">
-                        <div class="row">
-                            <div class="col">
-                                <div class="card custom-dark-card">
-                                    <div class="card-body d-flex flex-column text-center">
-                                        <img src="./styles/images/facebook-app-white-icon.png" alt="Social Media Management 1" class="img-fluid m-auto">
-                                        <h3 class="py-lg-2">Castech Facebook</h3>
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-center">
-                                        <a class="btn btn-outline-light" href="https://www.facebook.com/profile.php?id=61559652351267">&#x27A4; View Facebook</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card custom-dark-card">
-                                    <div class="card-body d-flex flex-column text-center">
-                                        <img src="./styles/images/youtube-app-white-icon.png" alt="Social Media Management 2" class="img-fluid m-auto">
-                                        <h3 class="py-lg-2">Shiji Youtube</h3>
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-center">
-                                        <a class="btn btn-outline-light" href="https://www.youtube.com/channel/UCTgvsPMRPAzH13LmKlUOgAg">&#x27A4; View Youtube</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <!-- ESL Teacher Section -->
-                <div class="container position-relative category section d-flex justify-content-center flex-column" id="eslTeacher">
-                    <div class="sectionText position-absolute top-0 start-0">
-                        <h1 class="text-center" style="color: white;">ESL</h1>
-                    </div>
-                    <div class="sectionText position-absolute bottom-0 end-0">
-                        <h1 class="text-center" style="color: white;">TEACHER</h1>
-                    </div>
-                    <div class="d-flex justify-content-center flex-column">
-                        <div class="row">
-                            <div class="col">
-                                <div class="card custom-dark-card d-flex">
-                                    <div class="card-body m-auto">
-                                        <img src="./styles/images/christefl.jpg" alt="ESL Teacher 1" class="img-fluid">
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-center">
-                                        <a class="btn btn-outline-light" href="./downloads/christefl.pdf" download="christefl.pdf">&#x27A4; Download Certificate</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <ul class="list-unstyled card-body row text-center py-5">
+                <li class="col-lg-4 my-3">
+                    <h5>Email Marketing Certificate</h5>
+                    <a href="./downloads/emailmarketing.png" download class="btn btn-dark">
+                        <span class="download-icon"><i class="bi bi-download"></i> Download</span>
+                    </a>
+                </li>
+                <li class="col-lg-4 my-3">
+                    <h5>Social Media Strategist Certificate</h5>
+                    <a href="./downloads/socmedstrat.png" download class="btn btn-dark">
+                        <span class="download-icon"><i class="bi bi-download"></i> Download</span>
+                    </a>
+                </li>
+                <li class="col-lg-4 my-3">
+                    <h5>ESL Teaching Certificate</h5>
+                    <a href="./downloads/christefl.pdf" download class="btn btn-dark">
+                        <span class="download-icon"><i class="bi bi-download"></i> Download</span>
+                    </a>
+                </li>
+            </ul>
+            
         </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
+    </section>
+    
 
 
-
-
-
-    <div class="contacts container-fluid d-flex flex-column justify-content-center">
+    <section class="contacts container-fluid d-flex flex-column justify-content-center">
+        <hr>
         <div class="row">
             <div class="col text-center">
                 <a href="mailto:cjsantos2411638@gmail.com">Email: cjsantos2411638@gmail.com</a><br>
@@ -306,8 +306,7 @@
                 <a href="https://www.facebook.com/christian.james.santos.2024/">Facebook</a>
             </div>
         </div>
-    </div>
-
+    </section>
 
 
     <script src="./scripts/cube.js"></script>
