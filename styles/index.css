@@ -24,65 +24,6 @@ header {
     font-family: 'Poppins', sans-serif;
 }
 
-.cube-container {
-    perspective: 1000px;
-}
-
-.cube-container .cube {
-    width: var(--cube-width);
-    height: var(--cube-width);
-    transform-style: preserve-3d;
-    font-family: 'Poppins', sans-serif;
-}
-
-.cube-container .cube-face {
-    width: var(--cube-width);
-    height: var(--cube-width);
-    position: absolute;
-    font-size: 30px;
-    background: yellow;
-    color: #000;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.cube-container .front {
-    transform: translateZ(var(--translateZ));
-}
-
-.cube-container .back {
-    background: #D3D3D3;
-    color: #000000;
-    transform: rotateY(180deg) translateZ(var(--translateZ));
-}
-
-.cube-container .left {
-    background: #808080;
-    color: #fff;
-    transform: rotateY(-90deg) translateZ(var(--translateZ));
-}
-
-.cube-container .right {
-    background: #505050;
-    color: #fff;
-    transform: rotateY(90deg) translateZ(var(--translateZ));
-}
-
-.cube-container .top {
-    background: #2C2C2C;
-    color: #fff;
-    transform: rotateX(90deg) translateZ(var(--translateZ));
-}
-
-.cube-container .bottom {
-    background: #FFFFFF;
-    color: #000000;
-    transform: rotateX(-90deg) translateZ(var(--translateZ));
-}
-
-
 .custom-dark-card {
     background-color: #343a40!important; 
     color: #FFFFFF!important; 
@@ -185,20 +126,33 @@ header {
     color: black!important;
 }
 
+.typing-effect {
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 1.25em;
+    width: fit-content ;
+    animation: blink 0.75s step-end infinite alternate;
+}
 
+@keyframes blink {
+  from { border-color: transparent }
+  to { border-color: black }
+}
 
+.chrispic{
+    width: 75%;
+    border-radius: 50%;
+    border: 10px white solid;
+    box-shadow: 0 0 50px white
+    ;
+}
 
 @media (max-width: 768px) {
    
-    .sectionText h1 {
-        font-size: 5rem!important;
-        margin: 7rem 0!important;
+    header h3{
+        text-align: center;
     }
-
-    .cube-container .cube {
-        font-size: 20px; 
-    }
-
     
     .modal-dialog {
         max-width: 90vw!important;
@@ -234,13 +188,6 @@ header {
         height: max-content;
     }
 
-    .carousel-control-next{
-        right: 0!important;
-    } 
-    .carousel-control-prev{
-        left: 0!important;
-    }
-
     .col-lg-9{
         margin-top: 10vh!important;
         margin-bottom: 10vh!important;
@@ -251,15 +198,13 @@ header {
         z-index: 2!important;
     }
 
+    .chrispiccont{
+        position: absolute;
+    }
+
 }
 
 @media (max-width: 375px) {
-
-    .cube-container{
-        width: -webkit-fill-available;
-        display: flex;
-        justify-content: center;
-    }
 
     .left{
         position: absolute;
