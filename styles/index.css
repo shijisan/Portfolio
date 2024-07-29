@@ -3,6 +3,7 @@ body{
     overflow-x: hidden!important;
 }
 
+
 .black-bg {
     background-color: #010101;
 }
@@ -23,6 +24,11 @@ header {
 .left {
     font-family: 'Poppins', sans-serif;
 }
+
+.carousel-control-next, .carousel-control-prev{
+    width: 5%!important;
+    background-color: rgba(0, 0, 0, 0.5)!important;
+} 
 
 .custom-dark-card {
     background-color: #343a40!important; 
@@ -108,7 +114,8 @@ header {
 }
 
 .skills{
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
 }
 
 .w-90{
@@ -149,6 +156,10 @@ header {
 }
 
 @media (max-width: 768px) {
+
+    .carousel-control-next, .carousel-control-prev{
+        width: 7.5%!important;
+    } 
    
     header h3{
         text-align: center;
@@ -179,6 +190,8 @@ header {
         margin: 20vh 20px!important;
     }
 
+
+
     .sub-heading{
         text-align: center;
     }
@@ -186,9 +199,9 @@ header {
 
     .skills{
         height: max-content;
-    }
-
-    .col-lg-9{
+    } 
+    
+    .skills .col-lg-8{
         margin-top: 10vh!important;
         margin-bottom: 10vh!important;
 
@@ -204,11 +217,12 @@ header {
 
 }
 
-@media (max-width: 375px) {
-
-    .left{
-        position: absolute;
+@media (max-width: 426px) {
+    .buttons{
+        justify-content: center;
     }
 
-
+    .carousel-control-next, .carousel-control-prev{
+        width: 10%!important;
+    } 
 }

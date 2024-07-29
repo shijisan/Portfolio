@@ -23,8 +23,11 @@
                     <h3 class="p-0 m-0">&gt;</h3><h3 class="sub-heading typing-effect p-0 m-0" id="typing"></h3>
                 </div>
                 <br>
-                <button id="connectBtn" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">&#9993; Let's Connect!</button>
-                <a href="#skills" class="btn btn-outline-light">&#10515; My skills </a>
+                <div class="buttons d-flex">
+                    <button id="connectBtn" class="btn btn-outline-light me-lg-2 me-1" data-bs-toggle="modal" data-bs-target="#contactModal">&#9993; Let's Connect!</button>
+                    <a href="#skills" class="btn btn-outline-light ms-lg-2 ms-1">&#10515; My skills </a>
+                </div>
+
                 <!-- Modal -->
                 <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -62,7 +65,7 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="card position-sticky h-100">
-                    <div class="card-body">
+                    <div class="card-body px-5">
                         <div class="d-flex justify-content-center">
                             <img src="./styles/images/chris.jpg" alt="An image of Christian James Santos." height="200" class="rounded">
                         </div>
@@ -101,162 +104,192 @@
             </div>
             <div class="col-lg-8">
                 <div id="carouselExample" class="carousel slide carousel-fade d-flex">
-                    <div class="carousel-inner order-2">
+                    <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div class="card p-3">
-                                <h3 class="text-center">&lt;&gt;&nbsp;Programming&nbsp;&lt;&gt;</h3>
-                                <hr>
-                                <div class="skill1 row px-lg-5">
-                                    <h4>HTML, CSS, JavaScript, Bootstrap</h4>
-                                    <div class="progress ps-0" role="progressbar" aria-label="HTML, CSS, Bootstrap"
-                                        aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-dark" style="width: 90%">90%</div>
+                                <div class="card-header">
+                                    <h3 class="text-center">&lt;&gt;&nbsp;Programming&nbsp;&lt;&gt;</h3>
+                                </div>
+                                <div class="card-body px-5">
+                                    <div class="skill1 row">
+                                        <h4>HTML, CSS, JavaScript, Bootstrap</h4>
+                                        <div class="progress ps-0" role="progressbar" aria-label="HTML, CSS, Bootstrap"
+                                            aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-dark" style="width: 90%">90%</div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="skill3 row">
+                                        <h4>Laravel</h4>
+                                        <div class="progress ps-0" role="progressbar" aria-label="Laravel" aria-valuenow="70"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-dark" style="width: 70%">70%</div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="skill4 row">
+                                        <h4>React.Js</h4>
+                                        <div class="progress ps-0" role="progressbar" aria-label="ReactJs" aria-valuenow="70"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-dark" style="width: 69%">69%</div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="skill2 row">
+                                        <h4>PHP, MySQL</h4>
+                                        <div class="progress ps-0" role="progressbar" aria-label="JavaScript, PHP, SQL"
+                                            aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-dark" style="width: 65%">65%</div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="skill5 row">
+                                        <h4>Python</h4>
+                                        <div class="progress ps-0" role="progressbar" aria-label="Python" aria-valuenow="60"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-dark" style="width: 60%">60%</div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="skill6 row">
+                                        <h4>Node.js</h4>
+                                        <div class="progress ps-0" role="progressbar" aria-label="Node" aria-valuenow="50"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-dark" style="width: 50%">50%</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <br>
-                                <div class="skill3 row px-lg-5">
-                                    <h4>Laravel</h4>
-                                    <div class="progress ps-0" role="progressbar" aria-label="Laravel" aria-valuenow="70"
-                                        aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-dark" style="width: 70%">70%</div>
+
+                                <button class="carousel-control-prev position-absolute" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+
+                                <button class="carousel-control-next position-absolute" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card p-3">
+                                <div class="card-header">
+                                    <h3 class="text-center">~&nbsp;Virtual Assistance&nbsp;~</h3>
+                                </div>
+                                <div class="card-body px-5">
+                                    <div class="skill1 row">
+                                        <h4>Social Media Manager</h4>
+                                        <div class="progress ps-0" role="progressbar" aria-label="SocMedManager"
+                                            aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-dark" style="width: 90%">90%</div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="skill2 row">
+                                        <h4>Lead Gen</h4>
+                                        <div class="progress ps-0" role="progressbar" aria-label="LeadGen"
+                                            aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-dark" style="width: 90%">90%</div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="skill3 row">
+                                        <h4>Video Editing</h4>
+                                        <div class="progress ps-0" role="progressbar" aria-label="VidEditing" aria-valuenow="70"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-dark" style="width: 70%">70%</div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="skill4 row">
+                                        <h4>Email Marketing</h4>
+                                        <div class="progress ps-0" role="progressbar" aria-label="EmailMarketing" aria-valuenow="60"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-dark" style="width: 60%">60%</div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="skill5 row">
+                                        <h4>Admin Assistance</h4>
+                                        <div class="progress ps-0" role="progressbar" aria-label="AdminAssist" aria-valuenow="60"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-dark" style="width: 60%">60%</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <br>
-                                <div class="skill4 row px-lg-5">
-                                    <h4>React.Js</h4>
-                                    <div class="progress ps-0" role="progressbar" aria-label="ReactJs" aria-valuenow="70"
-                                        aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-dark" style="width: 69%">69%</div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="skill2 row px-lg-5">
-                                    <h4>PHP, MySQL</h4>
-                                    <div class="progress ps-0" role="progressbar" aria-label="JavaScript, PHP, SQL"
-                                        aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-dark" style="width: 65%">65%</div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="skill5 row px-lg-5">
-                                    <h4>Python</h4>
-                                    <div class="progress ps-0" role="progressbar" aria-label="Python" aria-valuenow="60"
-                                        aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-dark" style="width: 60%">60%</div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="skill6 row px-lg-5">
-                                    <h4>Node.js</h4>
-                                    <div class="progress ps-0" role="progressbar" aria-label="Node" aria-valuenow="50"
-                                        aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-dark" style="width: 50%">50%</div>
-                                    </div>
-                                </div>
+
+                                <button class="carousel-control-prev position-absolute" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+
+                                <button class="carousel-control-next position-absolute" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="card p-3">
-                                <h3 class="text-center">~&nbsp;Virtual Assistance&nbsp;~</h3>
-                                <hr>
-                                <div class="skill1 row px-lg-5">
-                                    <h4>Social Media Manager</h4>
-                                    <div class="progress ps-0" role="progressbar" aria-label="SocMedManager"
-                                        aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-dark" style="width: 90%">90%</div>
-                                    </div>
+                                <div class="card-header">
+                                    <h3 class="text-center">--&nbsp;Others&nbsp;--</h3>
                                 </div>
-                                <br>
-                                <div class="skill2 row px-lg-5">
-                                    <h4>Lead Gen</h4>
-                                    <div class="progress ps-0" role="progressbar" aria-label="LeadGen"
-                                        aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-dark" style="width: 90%">90%</div>
+                                <div class="card-body">
+                                    <div class="skill1 row">
+                                        <h4>English Verbal and Written Skills</h4>
+                                        <div class="progress ps-0" role="progressbar" aria-label="EmailMarketing" aria-valuenow="97"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-dark" style="width: 97%">97%</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <br>
-                                <div class="skill3 row px-lg-5">
-                                    <h4>Video Editing</h4>
-                                    <div class="progress ps-0" role="progressbar" aria-label="VidEditing" aria-valuenow="70"
-                                        aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-dark" style="width: 70%">70%</div>
+                                    <br>
+                                    <div class="skill2 row">
+                                        <h4>Information and Communications Technology</h4>
+                                        <div class="progress ps-0" role="progressbar" aria-label="SocMedManager"
+                                            aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-dark" style="width: 90%">90%</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <br>
-                                <div class="skill4 row px-lg-5">
-                                    <h4>Email Marketing</h4>
-                                    <div class="progress ps-0" role="progressbar" aria-label="EmailMarketing" aria-valuenow="60"
-                                        aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-dark" style="width: 60%">60%</div>
+                                    <br>
+                                    <div class="skill3 row">
+                                        <h4>Computer System Servicing</h4>
+                                        <div class="progress ps-0" role="progressbar" aria-label="LeadGen"
+                                            aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-dark" style="width: 90%">90%</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <br>
-                                <div class="skill5 row px-lg-5">
-                                    <h4>Admin Assistance</h4>
-                                    <div class="progress ps-0" role="progressbar" aria-label="AdminAssist" aria-valuenow="60"
-                                        aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-dark" style="width: 60%">60%</div>
+                                    <br>
+                                    <div class="skill4 row">
+                                        <h4>Research and Analysis</h4>
+                                        <div class="progress ps-0" role="progressbar" aria-label="VidEditing" aria-valuenow="89"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-dark" style="width: 89%">89%</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="card p-3">
-                                <h3 class="text-center">--&nbsp;Others&nbsp;--</h3>
-                                <hr>
-                                <div class="skill1 row px-lg-5">
-                                    <h4>English Verbal and Written Skills</h4>
-                                    <div class="progress ps-0" role="progressbar" aria-label="EmailMarketing" aria-valuenow="97"
-                                        aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-dark" style="width: 97%">97%</div>
+                                    <br>
+                                    <div class="skill5 row">
+                                        <h4>Data Management</h4>
+                                        <div class="progress ps-0" role="progressbar" aria-label="AdminAssist" aria-valuenow="75"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-dark" style="width: 75%">75%</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <br>
-                                <div class="skill2 row px-lg-5">
-                                    <h4>Information and Communications Technology</h4>
-                                    <div class="progress ps-0" role="progressbar" aria-label="SocMedManager"
-                                        aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-dark" style="width: 90%">90%</div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="skill3 row px-lg-5">
-                                    <h4>Computer System Servicing</h4>
-                                    <div class="progress ps-0" role="progressbar" aria-label="LeadGen"
-                                        aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-dark" style="width: 90%">90%</div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="skill4 row px-lg-5">
-                                    <h4>Research and Analysis</h4>
-                                    <div class="progress ps-0" role="progressbar" aria-label="VidEditing" aria-valuenow="89"
-                                        aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-dark" style="width: 89%">89%</div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="skill5 row px-lg-5">
-                                    <h4>Data Management</h4>
-                                    <div class="progress ps-0" role="progressbar" aria-label="AdminAssist" aria-valuenow="75"
-                                        aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar bg-dark" style="width: 75%">75%</div>
-                                    </div>
+                                    
+                                    <button class="carousel-control-prev position-absolute" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+
+                                    <button class="carousel-control-next position-absolute" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Adjusted carousel controls -->
-                    <button class="carousel-control-prev order-1 position-relative" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-
-                    <button class="carousel-control-next order-3 position-relative" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
                 </div>
             </div>
             
