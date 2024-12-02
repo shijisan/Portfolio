@@ -1,21 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('./css/bg.css');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: black;
+  --foreground: white;
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  font-family: "Inter" ,Arial, Helvetica, sans-serif;
 }
