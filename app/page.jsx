@@ -11,7 +11,7 @@ import "swiper/css/autoplay";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import VercelProjects from "@/app/component/VercelProjects";
-import ContactsModal from "@/app/component/ContactsModal"; 
+import ContactsModal from "@/app/component/ContactsModal";
 
 const skills = [
 	"Next JS",
@@ -29,7 +29,7 @@ const skills = [
 export default function HomePage() {
 	const [introVisible, setIntroVisible] = useState(true);
 	const [rotate, setRotate] = useState("45deg");
-	const [isModalOpen, setIsModalOpen] = useState(false); 
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	useEffect(() => {
 		setRotate("0deg");
@@ -50,11 +50,11 @@ export default function HomePage() {
 	};
 
 	const handleContactsModal = () => {
-		setIsModalOpen(true); 
+		setIsModalOpen(true);
 	};
 
 	const closeModal = () => {
-		setIsModalOpen(false); 
+		setIsModalOpen(false);
 	};
 
 	return (
@@ -78,64 +78,67 @@ export default function HomePage() {
 				<FontAwesomeIcon className="animate-bounce" icon={faAngleDown} />
 			</div>
 
-			<header id="header" className="flex flex-col-reverse items-center w-full h-screen md:flex-row ">
-				<div className="flex flex-col items-center w-full md:h-full h-1/2 md:w-1/2 lg:justify-center md:flex-row">
-					<div className="flex flex-col w-full p-5 text-center md:text-start">
-						<h1 className="text-2xl lg:text-5xl md:text-3xl">Christian James Santos</h1>
-						<h2 className="font-mono ms-2">Full Stack Web Developer</h2>
-						<div className="flex items-center justify-center w-full mt-4">
-						<Swiper
-							modules={[Navigation, Pagination, Autoplay]}
-							spaceBetween={10}
-							slidesPerView={1}
-							breakpoints={{
-								1024: {
-									slidesPerView: 3, 
-								},
-							}}
-							autoplay={{
-								delay: 1500,
-								disableOnInteraction: false,
-							}}
-							className="w-full max-w-lg rounded-lg"
-						>
+			<header id="header" className="flex items-center justify-center">
+				<div className="flex flex-col-reverse items-center w-full h-screen lg:max-w-7xl md:flex-row">
+					<div className="flex flex-col items-center w-full md:h-full h-1/2 md:w-1/2 lg:justify-center md:flex-row">
+						<div className="flex flex-col w-full text-center md:text-start">
+							<h1 className="text-2xl lg:text-5xl md:text-3xl">Christian James Santos</h1>
+							<h2 className="font-mono ms-2">Full Stack Web Developer</h2>
+							<div className="flex items-center justify-center w-full mt-4">
+								<Swiper
+									modules={[Navigation, Pagination, Autoplay]}
+									spaceBetween={10}
+									slidesPerView={1}
+									breakpoints={{
+										1024: {
+											slidesPerView: 3,
+										},
+									}}
+									autoplay={{
+										delay: 1500,
+										disableOnInteraction: false,
+									}}
+									className="w-full max-w-lg rounded-lg"
+								>
 
 
-								{skills.map((skill, index) => (
-									<SwiperSlide key={index}>
-										<p className="py-1 text-base font-medium text-center transition-colors bg-gray-100 bg-opacity-75 rounded-lg text-indigo-950 hover:cursor-pointer hover:bg-white">
-											{skill}
-										</p>
-									</SwiperSlide>
-								))}
-							</Swiper>
+									{skills.map((skill, index) => (
+										<SwiperSlide key={index}>
+											<p className="py-1 text-base font-medium text-center transition-colors bg-gray-100 bg-opacity-75 rounded-lg text-indigo-950 hover:cursor-pointer hover:bg-white">
+												{skill}
+											</p>
+										</SwiperSlide>
+									))}
+								</Swiper>
+							</div>
 						</div>
 					</div>
+
+					<div className="flex items-end justify-center w-full md:items-center md:h-full h-1/2 md:w-1/2">
+						<div
+							className={`absolute flex items-center justify-center bg-black border-8 border-gray-300 rounded-full lg:w-80 lg:h-80 md:h-52 md:w-52 transition-opacity duration-500 ${introVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+								}`}
+						>
+							<h2 className="flex text-4xl font-medium text-white">
+								This is me{" "}
+								<div
+									style={{
+										transform: `rotate(${rotate})`,
+										transition: "transform 1s ease-in-out",
+									}}
+								>
+									👋
+								</div>
+							</h2>
+						</div>
+						<img
+							src="profile.png"
+							className="w-48 h-48 border-8 border-gray-300 rounded-full lg:w-80 lg:h-80 md:h-52 md:w-52"
+							alt="Me"
+						/>
+					</div>
 				</div>
 
-				<div className="flex items-end justify-center w-full md:items-center md:h-full h-1/2 md:w-1/2">
-					<div
-						className={`absolute flex items-center justify-center bg-black border-8 border-gray-300 rounded-full lg:w-80 lg:h-80 md:h-52 md:w-52 transition-opacity duration-500 ${introVisible ? "opacity-100" : "opacity-0 pointer-events-none"
-							}`}
-					>
-						<h2 className="flex text-4xl font-medium text-white">
-							This is me{" "}
-							<div
-								style={{
-									transform: `rotate(${rotate})`,
-									transition: "transform 1s ease-in-out",
-								}}
-							>
-								👋
-							</div>
-						</h2>
-					</div>
-					<img
-						src="profile.png"
-						className="w-48 h-48 border-8 border-gray-300 rounded-full lg:w-80 lg:h-80 md:h-52 md:w-52"
-						alt="Me"
-					/>
-				</div>
 			</header>
 
 			<section id="skillsSection" className="min-h-screen bg-[#4e54c8] flex justify-center items-center p-5 ">

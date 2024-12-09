@@ -1,77 +1,125 @@
-import puppeteer from "puppeteer";
+import puppeteer from 'puppeteer';
+import { NextResponse } from 'next/server';
+import cloudinary from 'cloudinary';
+import streamifier from 'streamifier'; 
 
-export async function GET(req) {
-  try {
-    const token = process.env.VERCEL_TOKEN;
-    if (!token) throw new Error("Vercel token is missing");
+cloudinary.v2.config({
+	cloud_name: process.env.CLOUDINARY_CLOUD_NAME,  
+	api_key: process.env.CLOUDINARY_API_KEY,
+	api_secret: process.env.CLOUDINARY_API_SECRET,
+	secure: true,
+});
 
-    const response = await fetch("https://api.vercel.com/v1/projects", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch Vercel projects");
-    }
-
-    const data = await response.json();
-
-    const projectsWithScreenshots = await Promise.all(
-      data.map(async (project) => {
-        const projectUrl = project.aliases && project.aliases.length > 0
-          ? `https://${project.aliases[0]}`
-          : `https://${project.name}.vercel.app`;
-
-        const screenshotUrl = await captureScreenshot(projectUrl, req);
-
-        return {
-          ...project,
-          url: projectUrl,  
-          screenshot: screenshotUrl,
-        };
-      })
-    );
-
-    return new Response(JSON.stringify(projectsWithScreenshots), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
-  } catch (err) {
-    console.error("Error in API route:", err.message);
-    return new Response(
-      JSON.stringify({ error: err.message }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
-    );
-  }
+function delay(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function captureScreenshot(projectUrl, req) {
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
-  });
+async function captureAndUploadScreenshot(projectUrl, projectName) {
+	const browser = await puppeteer.launch();
+	const page = await browser.newPage();
 
-  try {
-    const page = await browser.newPage();
-    
-    // Check for mobile device by user agent or other headers
-    const isMobile = req.headers.get("user-agent")?.includes("Mobi");
+	await page.setViewport({ width: 1200, height: 675 });
 
-    // Set the viewport depending on mobile or desktop
-    const width = isMobile ? 540 : 1024;  // For 9:16 on mobile and 16:9 on desktop
-    const height = isMobile ? 960 : 540;  // For mobile 9:16 aspect ratio, desktop 16:9
+	try {
+		await page.goto(projectUrl, { waitUntil: 'domcontentloaded', timeout: 20000 });
 
-    await page.setViewport({ width, height });
+		// Get the dimensions of the page (if needed)
+		const dimensions = await page.evaluate(() => {
+			return {
+				width: document.documentElement.scrollWidth,
+				height: document.documentElement.scrollHeight,
+			};
+		});
 
-    await page.goto(projectUrl, { waitUntil: "networkidle2" });
+		if (dimensions.width === 0 || dimensions.height === 0) {
+			throw new Error("Page has zero width or height.");
+		}
 
-    const screenshotBuffer = await page.screenshot({ encoding: "base64" });
-    return `data:image/png;base64,${screenshotBuffer}`;
-  } catch (error) {
-    console.error("Error capturing screenshot for project:", projectUrl, error.message);
-    return "https://via.placeholder.com/300/webp";  // Placeholder image in case of error
-  } finally {
-    await browser.close();
-  }
+		const screenshotBuffer = await page.screenshot({
+			clip: {
+				x: 0,
+				y: 0,
+				width: 1200, 
+				height: 675, 
+			},
+		});
+
+		return new Promise((resolve, reject) => {
+			const uploadStream = cloudinary.v2.uploader.upload_stream(
+				{
+					folder: 'portfolio',  
+					public_id: projectName, 
+					resource_type: 'image',
+					overwrite: true,  
+				},
+				(error, result) => {
+					if (error) {
+						console.error(`Error uploading screenshot for ${projectName}:`, error);
+						reject(error);
+					} else {
+						resolve(result.secure_url);
+					}
+				}
+			);
+
+			streamifier.createReadStream(screenshotBuffer).pipe(uploadStream);
+		});
+
+	} catch (error) {
+		console.error(`Failed to capture or upload screenshot for ${projectUrl}:`, error);
+		return null;
+	} finally {
+		await browser.close();
+	}
+}
+
+export async function GET(req) {
+	try {
+		const vercelToken = process.env.VERCEL_TOKEN;
+		if (!vercelToken) throw new Error("Vercel token is missing");
+
+		const response = await fetch("https://api.vercel.com/v1/projects", {
+			headers: {
+				Authorization: `Bearer ${vercelToken}`,
+			},
+		});
+
+		if (!response.ok) {
+			throw new Error("Failed to fetch Vercel projects");
+		}
+
+		const data = await response.json();
+
+		if (!Array.isArray(data)) {
+			throw new Error("Invalid data structure: Expected an array");
+		}
+
+		const projectsWithScreenshots = [];
+		for (const project of data) {
+			const projectUrl = `https://${project.name}.vercel.app`;
+			const projectName = project.name;
+
+			const screenshotUrl = await captureAndUploadScreenshot(projectUrl, projectName);
+
+			if (screenshotUrl) {
+				projectsWithScreenshots.push({
+					id: project.id,
+					name: project.name,
+					alias: project.alias.length > 0 ? project.alias[0] : "No alias",
+					screenshotUrl: screenshotUrl,  
+				});
+			} else {
+				console.error(`Screenshot failed for project: ${project.name}`);
+			}
+		}
+
+		return NextResponse.json(projectsWithScreenshots, { status: 200 });
+
+	} catch (err) {
+		console.error("Error in API route:", err.message);
+		return NextResponse.json(
+			{ error: err.message },
+			{ status: 500 }
+		);
+	}
 }

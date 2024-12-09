@@ -14,15 +14,24 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@vercel/og": "^0.6.4",
     "apiflash": "^0.1.4",
+    "cheerio": "^1.0.0",
+    "chrome-aws-lambda": "^10.1.0",
+    "cloudinary": "^2.5.1",
     "emailjs-com": "^3.2.0",
+    "form-data": "^4.0.1",
+    "luxon": "^3.5.0",
     "next": "15.0.3",
+    "playwright": "^1.49.0",
     "puppeteer": "^23.9.0",
+    "puppeteer-core": "^10.4.0",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
+    "streamifier": "^0.1.1",
     "swiper": "^11.1.15"
   },
   "devDependencies": {
     "postcss": "^8",
+    "source-map-loader": "^5.0.0",
     "tailwindcss": "^3.4.1"
   }
 }
