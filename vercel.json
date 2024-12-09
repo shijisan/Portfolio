@@ -7,9 +7,6 @@
    ],
    "env": {
      "PLAYWRIGHT_BROWSERS_PATH": "/tmp/playwright-browsers"
-   },
-   "hooks": {
-     "build": "npx playwright install"
    }
  }
  
