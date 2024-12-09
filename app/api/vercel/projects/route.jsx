@@ -1,4 +1,4 @@
-import { chromium } from 'playwright';  // Using Playwright for Chromium
+import { chromium } from 'playwright'; 
 import { NextResponse } from 'next/server';
 import cloudinary from 'cloudinary';
 import streamifier from 'streamifier';
@@ -15,19 +15,17 @@ function delay(ms) {
 }
 
 async function captureAndUploadScreenshot(projectUrl, projectName) {
-  // Launch Playwright with Chromium (or you could choose WebKit/Firefox)
   const browser = await chromium.launch({
-    headless: true,  // Ensure headless mode is enabled
-    args: ['--no-sandbox', '--disable-setuid-sandbox'], // For serverless environments
+    headless: true, 
+    args: ['--no-sandbox', '--disable-setuid-sandbox'], 
   });
 
   const page = await browser.newPage();
-  await page.setViewportSize({ width: 1200, height: 675 }); // Set viewport size
+  await page.setViewportSize({ width: 1200, height: 675 }); 
 
   try {
     await page.goto(projectUrl, { waitUntil: 'domcontentloaded', timeout: 20000 });
 
-    // Get the dimensions of the page (if needed)
     const dimensions = await page.evaluate(() => {
       return {
         width: document.documentElement.scrollWidth,
@@ -51,17 +49,17 @@ async function captureAndUploadScreenshot(projectUrl, projectName) {
     return new Promise((resolve, reject) => {
       const uploadStream = cloudinary.v2.uploader.upload_stream(
         {
-          folder: 'portfolio',  // Upload to the 'portfolio' folder in Cloudinary
-          public_id: projectName,  // Use the project name as the public ID
+          folder: 'portfolio',  
+          public_id: projectName,  
           resource_type: 'image',
-          overwrite: true,  // Overwrite any existing image with the same name
+          overwrite: true, 
         },
         (error, result) => {
           if (error) {
             console.error(`Error uploading screenshot for ${projectName}:`, error);
             reject(error);
           } else {
-            resolve(result.secure_url);  // Return the secure URL after upload
+            resolve(result.secure_url);  
           }
         }
       );
@@ -71,9 +69,9 @@ async function captureAndUploadScreenshot(projectUrl, projectName) {
 
   } catch (error) {
     console.error(`Failed to capture or upload screenshot for ${projectUrl}:`, error);
-    return null;  // Return null if the screenshot or upload failed
+    return null; 
   } finally {
-    await browser.close();  // Close the browser instance to free resources
+    await browser.close();
   }
 }
 
