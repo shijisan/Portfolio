@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx playwright install && npm install --legacy-peer-deps && next build",
+    "build": "npm install --force && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "npx playwright install"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.1",
