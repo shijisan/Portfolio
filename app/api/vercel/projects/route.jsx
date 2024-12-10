@@ -2,7 +2,7 @@ import puppeteer from 'puppeteer-core';
 import { NextResponse } from 'next/server';
 import cloudinary from 'cloudinary';
 import streamifier from 'streamifier';
-import chromium from '@sparticuz/chromium';  // Using sparticuz/chromium
+import chromium from '@sparticuz/chromium';  // Ensure proper import of chromium
 
 cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -16,8 +16,11 @@ function delay(ms) {
 }
 
 async function captureAndUploadScreenshot(projectUrl, projectName) {
+  // Make sure executablePath() is awaited to resolve to the actual path
+  const executablePath = await chromium.executablePath(); 
+
   const browser = await puppeteer.launch({
-    executablePath: chromium.executablePath,  // Directly pass the executable path
+    executablePath,  // Ensure this is the resolved executable path
     headless: chromium.headless,
     args: [
       ...chromium.args,
@@ -55,7 +58,6 @@ async function captureAndUploadScreenshot(projectUrl, projectName) {
       },
     });
 
-    // Wait for the file to be uploaded
     return new Promise((resolve, reject) => {
       const uploadStream = cloudinary.v2.uploader.upload_stream(
         {
@@ -74,7 +76,6 @@ async function captureAndUploadScreenshot(projectUrl, projectName) {
         }
       );
 
-      // Ensure screenshotBuffer is passed as a direct buffer, not as a Promise
       streamifier.createReadStream(screenshotBuffer).pipe(uploadStream);
     });
 
