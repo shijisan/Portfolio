@@ -1,10 +1,11 @@
-import puppeteer from 'puppeteer-core'; 
+import puppeteer from 'puppeteer-core';
 import { NextResponse } from 'next/server';
 import cloudinary from 'cloudinary';
 import streamifier from 'streamifier';
+import chromium from 'chrome-aws-lambda';
 
 cloudinary.v2.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,  
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
   secure: true,
@@ -16,9 +17,9 @@ function delay(ms) {
 
 async function captureAndUploadScreenshot(projectUrl, projectName) {
   const browser = await puppeteer.launch({
-    executablePath: process.env.CHROMIUM_EXECUTABLE_PATH, // Needed for serverless
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'], // Essential for serverless
+    executablePath: await chromium.executablePath,
+    headless: chromium.headless,
+    args: chromium.args,
   });
 
   const page = await browser.newPage();
@@ -50,8 +51,8 @@ async function captureAndUploadScreenshot(projectUrl, projectName) {
     return new Promise((resolve, reject) => {
       const uploadStream = cloudinary.v2.uploader.upload_stream(
         {
-          folder: 'portfolio',  
-          public_id: projectName,  
+          folder: 'portfolio',
+          public_id: projectName,
           resource_type: 'image',
           overwrite: true,
         },
