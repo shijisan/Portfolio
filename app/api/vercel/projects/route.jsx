@@ -1,4 +1,4 @@
-import { chromium } from 'playwright'; 
+import puppeteer from 'puppeteer-core'; 
 import { NextResponse } from 'next/server';
 import cloudinary from 'cloudinary';
 import streamifier from 'streamifier';
@@ -15,13 +15,14 @@ function delay(ms) {
 }
 
 async function captureAndUploadScreenshot(projectUrl, projectName) {
-  const browser = await chromium.launch({
-    headless: true, 
-    args: ['--no-sandbox', '--disable-setuid-sandbox'], 
+  const browser = await puppeteer.launch({
+    executablePath: process.env.CHROMIUM_EXECUTABLE_PATH, // Needed for serverless
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'], // Essential for serverless
   });
 
   const page = await browser.newPage();
-  await page.setViewportSize({ width: 1200, height: 675 }); 
+  await page.setViewport({ width: 1200, height: 675 });
 
   try {
     await page.goto(projectUrl, { waitUntil: 'domcontentloaded', timeout: 20000 });
@@ -41,8 +42,8 @@ async function captureAndUploadScreenshot(projectUrl, projectName) {
       clip: {
         x: 0,
         y: 0,
-        width: 1200, 
-        height: 675, 
+        width: 1200,
+        height: 675,
       },
     });
 
@@ -52,14 +53,14 @@ async function captureAndUploadScreenshot(projectUrl, projectName) {
           folder: 'portfolio',  
           public_id: projectName,  
           resource_type: 'image',
-          overwrite: true, 
+          overwrite: true,
         },
         (error, result) => {
           if (error) {
             console.error(`Error uploading screenshot for ${projectName}:`, error);
             reject(error);
           } else {
-            resolve(result.secure_url);  
+            resolve(result.secure_url);
           }
         }
       );
@@ -69,7 +70,7 @@ async function captureAndUploadScreenshot(projectUrl, projectName) {
 
   } catch (error) {
     console.error(`Failed to capture or upload screenshot for ${projectUrl}:`, error);
-    return null; 
+    return null;
   } finally {
     await browser.close();
   }
@@ -108,7 +109,7 @@ export async function GET(req) {
           id: project.id,
           name: project.name,
           alias: project.alias.length > 0 ? project.alias[0] : "No alias",
-          screenshotUrl: screenshotUrl,  
+          screenshotUrl: screenshotUrl,
         });
       } else {
         console.error(`Screenshot failed for project: ${project.name}`);
