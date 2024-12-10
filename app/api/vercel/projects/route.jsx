@@ -19,7 +19,14 @@ async function captureAndUploadScreenshot(projectUrl, projectName) {
   const browser = await puppeteer.launch({
     executablePath: await chromium.executablePath,
     headless: chromium.headless,
-    args: chromium.args,
+    args: [
+      ...chromium.args,
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-gpu',
+      '--remote-debugging-port=9222',
+      '--single-process',
+    ],
   });
 
   const page = await browser.newPage();
