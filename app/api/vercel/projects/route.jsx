@@ -16,20 +16,21 @@ function delay(ms) {
 }
 
 async function captureAndUploadScreenshot(projectUrl, projectName) {
-  // Make sure executablePath() is awaited to resolve to the actual path
-  const executablePath = await chromium.executablePath(); 
+  // Use executablePath() to get the correct path for Sparticuz Chromium
+  const executablePath = await chromium.executablePath();
 
   const browser = await puppeteer.launch({
-    executablePath,  // Ensure this is the resolved executable path
-    headless: chromium.headless,
+    executablePath,  // Ensure this is the resolved executable path from Sparticuz Chromium
+    headless: chromium.headless,  // Set headless mode from Sparticuz
     args: [
-      ...chromium.args,
+      ...chromium.args,  // Use the arguments provided by Sparticuz Chromium
       '--no-sandbox',
       '--disable-setuid-sandbox',
       '--disable-gpu',
       '--remote-debugging-port=9222',
       '--single-process',
     ],
+    defaultViewport: chromium.defaultViewport,  // Set the default viewport from Sparticuz
   });
 
   const page = await browser.newPage();
