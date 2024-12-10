@@ -17,7 +17,7 @@ function delay(ms) {
 
 async function captureAndUploadScreenshot(projectUrl, projectName) {
   const browser = await puppeteer.launch({
-    executablePath: await chromium.executablePath(),
+    executablePath: chromium.executablePath,  // Directly pass the executable path
     headless: chromium.headless,
     args: [
       ...chromium.args,
