@@ -2,7 +2,7 @@ import puppeteer from 'puppeteer-core';
 import { NextResponse } from 'next/server';
 import cloudinary from 'cloudinary';
 import streamifier from 'streamifier';
-import chromium from 'chrome-aws-lambda';
+import chromium from '@sparticuz/chromium';  // Using sparticuz/chromium instead
 
 cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -17,7 +17,7 @@ function delay(ms) {
 
 async function captureAndUploadScreenshot(projectUrl, projectName) {
   const browser = await puppeteer.launch({
-    executablePath: await chromium.executablePath,
+    executablePath: await chromium.executablePath(),
     headless: chromium.headless,
     args: [
       ...chromium.args,

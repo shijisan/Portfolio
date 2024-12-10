@@ -22,6 +22,7 @@
     "swiper": "^11.1.15"
   },
   "devDependencies": {
+    "@sparticuz/chromium": "^106.0.2",
     "postcss": "^8",
     "source-map-loader": "^5.0.0",
     "tailwindcss": "^3.4.1"
