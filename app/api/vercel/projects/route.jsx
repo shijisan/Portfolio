@@ -2,7 +2,7 @@ import puppeteer from 'puppeteer-core';
 import { NextResponse } from 'next/server';
 import cloudinary from 'cloudinary';
 import streamifier from 'streamifier';
-import chromium from '@sparticuz/chromium';  // Using sparticuz/chromium instead
+import chromium from '@sparticuz/chromium';  // Using sparticuz/chromium
 
 cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -55,6 +55,7 @@ async function captureAndUploadScreenshot(projectUrl, projectName) {
       },
     });
 
+    // Wait for the file to be uploaded
     return new Promise((resolve, reject) => {
       const uploadStream = cloudinary.v2.uploader.upload_stream(
         {
@@ -73,6 +74,7 @@ async function captureAndUploadScreenshot(projectUrl, projectName) {
         }
       );
 
+      // Ensure screenshotBuffer is passed as a direct buffer, not as a Promise
       streamifier.createReadStream(screenshotBuffer).pipe(uploadStream);
     });
 
