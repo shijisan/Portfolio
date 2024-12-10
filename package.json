@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "npx playwright install"
+    "postinstall": "npx playwright install-deps"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.1",
