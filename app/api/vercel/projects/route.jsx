@@ -1,140 +1,118 @@
-import puppeteer from 'puppeteer-core';
-import { NextResponse } from 'next/server';
-import cloudinary from 'cloudinary';
-import streamifier from 'streamifier';
-import chromium from '@sparticuz/chromium';  // Ensure proper import of chromium
+import { NextResponse } from "next/server";
+import cloudinary from "cloudinary";
+import fetch from "node-fetch"; 
+import streamifier from "streamifier"; 
+import { checkLastScreenshotTime, updateScreenshotTime } from "@/app/utils/cache"; 
 
 cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
-  secure: true,
 });
 
-function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function captureAndUploadScreenshot(projectUrl, projectName) {
-  // Use executablePath() to get the correct path for Sparticuz Chromium
-  const executablePath = await chromium.executablePath();
-
-  const browser = await puppeteer.launch({
-    executablePath,  // Ensure this is the resolved executable path from Sparticuz Chromium
-    headless: chromium.headless,  // Set headless mode from Sparticuz
-    args: [
-      ...chromium.args,  // Use the arguments provided by Sparticuz Chromium
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-gpu',
-      '--remote-debugging-port=9222',
-      '--single-process',
-    ],
-    defaultViewport: chromium.defaultViewport,  // Set the default viewport from Sparticuz
-  });
-
-  const page = await browser.newPage();
-  await page.setViewport({ width: 1200, height: 675 });
-
-  try {
-    await page.goto(projectUrl, { waitUntil: 'domcontentloaded', timeout: 20000 });
-
-    const dimensions = await page.evaluate(() => {
-      return {
-        width: document.documentElement.scrollWidth,
-        height: document.documentElement.scrollHeight,
-      };
-    });
-
-    if (dimensions.width === 0 || dimensions.height === 0) {
-      throw new Error("Page has zero width or height.");
-    }
-
-    const screenshotBuffer = await page.screenshot({
-      clip: {
-        x: 0,
-        y: 0,
-        width: 1200,
-        height: 675,
-      },
-    });
-
-    return new Promise((resolve, reject) => {
-      const uploadStream = cloudinary.v2.uploader.upload_stream(
-        {
-          folder: 'portfolio',
-          public_id: projectName,
-          resource_type: 'image',
-          overwrite: true,
-        },
-        (error, result) => {
-          if (error) {
-            console.error(`Error uploading screenshot for ${projectName}:`, error);
-            reject(error);
-          } else {
-            resolve(result.secure_url);
-          }
-        }
-      );
-
-      streamifier.createReadStream(screenshotBuffer).pipe(uploadStream);
-    });
-
-  } catch (error) {
-    console.error(`Failed to capture or upload screenshot for ${projectUrl}:`, error);
-    return null;
-  } finally {
-    await browser.close();
-  }
-}
-
-export async function GET(req) {
+export async function GET() {
   try {
     const vercelToken = process.env.VERCEL_TOKEN;
-    if (!vercelToken) throw new Error("Vercel token is missing");
+    const apiFlashKey = process.env.APIFLASH_KEY;
 
-    const response = await fetch("https://api.vercel.com/v1/projects", {
+    if (!vercelToken || !apiFlashKey) {
+      throw new Error("Missing required API keys");
+    }
+
+    const response = await fetch("https://api.vercel.com/v9/projects", {
       headers: {
         Authorization: `Bearer ${vercelToken}`,
       },
     });
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch Vercel projects");
-    }
+    if (!response.ok) throw new Error("Failed to fetch Vercel projects");
 
-    const data = await response.json();
+    const { projects } = await response.json();
+    const updatedProjects = [];
 
-    if (!Array.isArray(data)) {
-      throw new Error("Invalid data structure: Expected an array");
-    }
+    for (const project of projects) {
+      const folder = "portfolio";
+      const imageName = `${project.name}.png`;
 
-    const projectsWithScreenshots = [];
-    for (const project of data) {
-      const projectUrl = `https://${project.name}.vercel.app`;
-      const projectName = project.name;
+      const lastDeployed = new Date(project.last_deployed);
+      const now = new Date();
 
-      const screenshotUrl = await captureAndUploadScreenshot(projectUrl, projectName);
+      const timeDifferenceInDays = (now - lastDeployed) / (1000 * 3600 * 24);
 
-      if (screenshotUrl) {
-        projectsWithScreenshots.push({
-          id: project.id,
-          name: project.name,
-          alias: project.alias.length > 0 ? project.alias[0] : "No alias",
-          screenshotUrl: screenshotUrl,
-        });
+      let screenshotUrl = "";
+      const existingImage = await cloudinary.v2.search
+        .expression(`folder:${folder} AND filename:${project.name}`)
+        .execute();
+
+      if (timeDifferenceInDays <= 5) {
+        if (existingImage.total_count > 0) {
+          console.log(`Screenshot already exists for project: ${project.name}`);
+          
+          screenshotUrl = existingImage.resources[0].secure_url;
+
+          const lastScreenshotTime = await checkLastScreenshotTime(project.name);
+          const timeSinceLastScreenshot = now - lastScreenshotTime;
+
+          if (timeSinceLastScreenshot < 24 * 60 * 60 * 1000) {
+            console.log(`Screenshot for ${project.name} was taken recently. Skipping new screenshot.`);
+          } else {
+            console.log(`Screenshot for ${project.name} needs to be updated.`);
+            screenshotUrl = await generateScreenshot(apiFlashKey, project.name);
+            await updateScreenshotTime(project.name); 
+          }
+        } else {
+          console.log(`No screenshot found for project: ${project.name}, generating new screenshot.`);
+          screenshotUrl = await generateScreenshot(apiFlashKey, project.name);
+          await updateScreenshotTime(project.name);
+        }
       } else {
-        console.error(`Screenshot failed for project: ${project.name}`);
+        console.log(`Project ${project.name} was deployed more than 5 days ago. Skipping screenshot.`);
+        
+        if (existingImage.total_count > 0) {
+          screenshotUrl = existingImage.resources[0].secure_url;
+        }
       }
+
+      updatedProjects.push({
+        id: project.id,
+        name: project.name,
+        screenshotUrl,
+      });
     }
 
-    return NextResponse.json(projectsWithScreenshots, { status: 200 });
-
+    return NextResponse.json(updatedProjects, { status: 200 });
   } catch (err) {
-    console.error("Error in API route:", err.message);
-    return NextResponse.json(
-      { error: err.message },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: err.message }, { status: 500 });
   }
+}
+
+async function generateScreenshot(apiFlashKey, projectName) {
+  const screenshotUrl = `https://api.apiflash.com/v1/urltoimage?access_key=${apiFlashKey}&wait_until=page_loaded&delay=10000&url=https://${projectName}.vercel.app`;
+
+  const response = await fetch(screenshotUrl);
+  if (!response.ok) throw new Error("Failed to generate screenshot");
+
+  const arrayBuffer = await response.arrayBuffer(); 
+  const imageBuffer = Buffer.from(arrayBuffer);
+
+  const imageStream = streamifier.createReadStream(imageBuffer);
+
+  return new Promise((resolve, reject) => {
+    const cloudinaryUploadResponse = cloudinary.v2.uploader.upload_stream(
+      {
+        folder: "portfolio",
+        public_id: projectName,
+        resource_type: "auto",
+      },
+      (error, result) => {
+        if (error) {
+          reject(new Error("Cloudinary upload failed: " + error.message));
+        } else {
+          resolve(result.secure_url);
+        }
+      }
+    );
+
+    imageStream.pipe(cloudinaryUploadResponse);
+  });
 }

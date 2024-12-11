@@ -1,7 +1,8 @@
+@import url("./css/wave.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('./css/bg.css');
 
 :root {
   --background: black;

@@ -59,23 +59,9 @@ export default function HomePage() {
 
 	return (
 		<>
-			<div className="absolute top-0 w-full h-full area -z-10">
-				<ul className="circles">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ul>
-			</div>
 
 			<div className="absolute z-10 bottom-4 left-1/2 right-1/2" onClick={() => scrollToSection("skillsSection")}>
-				<FontAwesomeIcon className="animate-bounce" icon={faAngleDown} />
+				<FontAwesomeIcon className="text-indigo-950 animate-bounce" icon={faAngleDown} />
 			</div>
 
 			<header id="header" className="flex items-center justify-center">
@@ -98,7 +84,7 @@ export default function HomePage() {
 										delay: 1500,
 										disableOnInteraction: false,
 									}}
-									className="w-full max-w-lg rounded-lg"
+									className="w-full rounded-lg"
 								>
 
 
@@ -116,7 +102,7 @@ export default function HomePage() {
 
 					<div className="flex items-end justify-center w-full md:items-center md:h-full h-1/2 md:w-1/2">
 						<div
-							className={`absolute flex items-center justify-center bg-black border-8 border-gray-300 rounded-full lg:w-80 lg:h-80 md:h-52 md:w-52 transition-opacity duration-500 ${introVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+							className={`absolute flex items-center justify-center bg-black border-8 border-gray-100 hover:border-white rounded-full lg:w-80 lg:h-80 md:h-52 md:w-52 transition-opacity duration-500 ${introVisible ? "opacity-100" : "opacity-0 pointer-events-none"
 								}`}
 						>
 							<h2 className="flex text-4xl font-medium text-white">
@@ -133,7 +119,7 @@ export default function HomePage() {
 						</div>
 						<img
 							src="profile.png"
-							className="w-48 h-48 border-8 border-gray-300 rounded-full lg:w-80 lg:h-80 md:h-52 md:w-52"
+							className="w-48 h-48 border-8 border-gray-100 rounded-full hover:border-white bg-indigo-950 lg:w-80 lg:h-80 md:h-52 md:w-52"
 							alt="Me"
 						/>
 					</div>
@@ -141,38 +127,56 @@ export default function HomePage() {
 
 			</header>
 
-			<section id="skillsSection" className="min-h-screen bg-[#4e54c8] flex justify-center items-center p-5 ">
-				<div className="lg:w-[80vw] flex flex-col justify-evenly h-full gap-8">
-					<div className="self-center w-full p-5 bg-gray-300 rounded-lg shadow md:w-3/4 md:self-start text-indigo-950">
-						<h2 className="mb-2 text-2xl font-medium lg:text-3xl">About Me</h2>
-						<hr className="border-indigo-950" />
-						<p className="mt-2 font-mono text-base text-justify lg:text-lg indent-8">My name is Christian James Santos and I am a Full-Stack Web Developer specializing in Next Js, React Js, and more! My hobbies mostly comprise of Web Development, Software Development, and a little bit of video games.</p>
+			<div className="bg">
+				<div className="wave wave1"></div>
+				<div className="wave wave2"></div>
+				<div className="wave wave3"></div>
+				<div className="wave wave4"></div>
+			</div>
+
+
+			<section id="skillsSection" className="flex items-center justify-center min-h-screen bg-white ">
+				<div className="flex flex-col w-full h-full min-h-screen gap-8 lg:max-w-7xl justify-evenly">
+					<div className="self-center w-full p-5 text-white bg-indigo-900 rounded-lg shadow md:w-3/4 md:self-start">
+						<h2 className="px-4 mb-2 text-2xl font-medium lg:text-3xl">About Me</h2>
+						<hr className="border-white" />
+						<p className="px-4 mt-2 font-mono text-base text-justify lg:text-lg indent-8">My name is Christian James Santos and I am a Full-Stack Web Developer specializing in Next Js, React Js, and more! My hobbies mostly comprise of Web Development, Software Development, and a little bit of video games.</p>
 					</div>
 
-					<div className="self-center w-full p-5 bg-gray-300 rounded-lg shadow md:w-3/4 md:self-end text-indigo-950">
-						<h2 className="mb-2 text-2xl font-medium lg:text-3xl md:text-end text-start">Work Experience</h2>
-						<hr className="border-indigo-950" />
-						<p className="mt-2 font-mono text-base text-justify lg:text-lg">
+					<div className="self-center w-full p-5 text-white bg-indigo-700 rounded-lg shadow md:w-3/4 md:self-end">
+						<h2 className="px-4 mb-2 text-2xl font-medium lg:text-3xl md:text-end text-start">Work Experience</h2>
+						<hr className="border-white" />
+						<p className="px-4 mt-2 font-mono text-base text-justify lg:text-lg">
 							I have worked as a freelance Web Developer for renowned companies such as The VA Bar Academy and The Finest VA. Additionally, I serve as a Front-End Web Development instructor at The VA Bar, where I share my expertise with aspiring developers.
 						</p>
 					</div>
 
-					<div className="self-center w-full p-5 bg-gray-300 rounded-lg shadow md:w-3/4 md:self-start text-indigo-950">
-						<h2 className="mb-2 text-2xl font-medium lg:text-3xl">My Contacts</h2>
-						<hr className="border-indigo-950" />
-						<p className="mt-2 mb-4 font-mono text-base text-justify lg:text-lg indent-8">
-							If you need a Web Developer for your business or project, hit me up in my contacts! Click <span onClick={handleContactsModal} className="text-indigo-600 underline hover:cursor-pointer">here</span> to access an email form.
+					<div className="self-center w-full p-5 px-4 text-white rounded-lg shadow bg-[#4e54c8] md:w-3/4 md:self-start">
+						<h2 className="px-4 mb-2 text-2xl font-medium lg:text-3xl">My Contacts</h2>
+						<hr className="border-white" />
+						<p className="px-4 mt-2 mb-4 font-mono text-base text-justify lg:text-lg indent-8">
+							If you need a Web Developer for your business or project, hit me up in my contacts! Click <span onClick={handleContactsModal} className="text-yellow-300 underline hover:cursor-pointer">here</span> to access an email form.
 						</p>
 					</div>
 
 				</div>
 			</section>
 
-			<section id="projectsSection" className="bg-[#4e54c8] flex justify-center items-center min-h-screen">
+			<div className="rotate-180 bg2">
+				<div className="wave wave1"></div>
+				<div className="wave wave2"></div>
+				<div className="wave wave3"></div>
+				<div className="wave wave4"></div>
+			</div>
+
+			<section id="projectsSection" className="bg-[#4e54c8] flex justify-center items-center min-h-screen bg3">
 				<VercelProjects />
 			</section>
 
 			<ContactsModal isOpen={isModalOpen} onClose={closeModal} />
+
+
+
 		</>
 	);
 }
