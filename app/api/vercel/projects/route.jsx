@@ -44,6 +44,7 @@ export async function GET() {
         .expression(`folder:${folder} AND filename:${project.name}`)
         .execute();
 
+      // Only update screenshot if deployed within the last 5 days
       if (timeDifferenceInDays <= 5) {
         if (existingImage.total_count > 0) {
           console.log(`Screenshot already exists for project: ${project.name}`);
@@ -53,6 +54,7 @@ export async function GET() {
           const lastScreenshotTime = await checkLastScreenshotTime(project.name);
           const timeSinceLastScreenshot = now - lastScreenshotTime;
 
+          // If screenshot was taken in the last 24 hours, skip the update
           if (timeSinceLastScreenshot < 24 * 60 * 60 * 1000) {
             console.log(`Screenshot for ${project.name} was taken recently. Skipping new screenshot.`);
           } else {
@@ -80,8 +82,11 @@ export async function GET() {
       });
     }
 
+    console.log('Updated projects:', updatedProjects);  // Log the updated projects to verify
+
     return NextResponse.json(updatedProjects, { status: 200 });
   } catch (err) {
+    console.error('Error occurred:', err.message);  // Log the error for easier debugging
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }
