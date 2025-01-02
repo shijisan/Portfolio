@@ -14,11 +14,11 @@
     "@fortawesome/react-fontawesome": "^0.1.19",
     "cheerio": "^1.0.0",
     "cloudinary": "^2.5.1",
-    "colorthief": "^2.6.0",
     "emailjs-com": "^3.2.0",
     "ioredis": "^5.4.1",
     "jsdom": "^25.0.1",
     "next": "15.0.3",
+    "node-cache": "^5.1.2",
     "node-fetch": "^3.3.2",
     "node-vibrant": "^3.2.1-alpha.1",
     "puppeteer": "^23.10.2",
@@ -27,7 +27,6 @@
     "swiper": "^11.1.15"
   },
   "devDependencies": {
-    "@sparticuz/chromium": "^106.0.2",
     "postcss": "^8",
     "source-map-loader": "^5.0.0",
     "tailwindcss": "^3.4.1"
