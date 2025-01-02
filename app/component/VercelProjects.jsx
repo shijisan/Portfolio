@@ -7,6 +7,7 @@ export default function VercelProjects() {
 	const [visibleProjects, setVisibleProjects] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
+	const [loadingProgress, setLoadingProgress] = useState(0); // New state for progress
 	const containerRef = useRef(null);
 
 	const BATCH_SIZE = 5;
@@ -33,16 +34,30 @@ export default function VercelProjects() {
 	useEffect(() => {
 		const loadProjects = async () => {
 			setLoading(true);
+			setLoadingProgress(0); // Reset loading progress on new fetch
+
 			try {
 				const cachedProjects = JSON.parse(localStorage.getItem("vercelProjects"));
 				if (cachedProjects && Array.isArray(cachedProjects)) {
 					setProjects(cachedProjects);
 					setVisibleProjects(cachedProjects.slice(0, BATCH_SIZE));
+					setLoadingProgress(100); // If data is cached, set progress to 100%
 				} else {
 					const data = await fetchProjects();
 					setProjects(data);
 					setVisibleProjects(data.slice(0, BATCH_SIZE));
 					localStorage.setItem("vercelProjects", JSON.stringify(data));
+
+					// Update progress based on how many projects have been loaded
+					const totalProjects = data.length;
+					let loadedCount = 0;
+
+					// Simulate a delay for loading to mimic real data fetching
+					for (let i = 0; i < totalProjects; i++) {
+						await new Promise((resolve) => setTimeout(resolve, 100)); // Simulating delay
+						loadedCount++;
+						setLoadingProgress(Math.floor((loadedCount / totalProjects) * 100)); // Update progress
+					}
 				}
 			} catch (err) {
 				console.error(err.message);
@@ -80,7 +95,20 @@ export default function VercelProjects() {
 		}
 	};
 
-	if (loading) return <div>Loading projects...</div>;
+	if (loading) {
+		return (
+			<div className="flex flex-col items-center w-full">
+				<div className="w-3/4 h-2 bg-gray-200 rounded-full">
+					<div
+						className="h-full bg-blue-500 rounded-full"
+						style={{ width: `${loadingProgress}%` }}
+					></div>
+				</div>
+				<p className="mt-2">{loadingProgress}% - Loading projects...</p>
+			</div>
+		);
+	}
+
 	if (error) return <div>Error: {error}</div>;
 	if (!projects.length) return <div>No projects found.</div>;
 
