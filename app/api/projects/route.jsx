@@ -3,7 +3,7 @@ import fetch from "node-fetch"; // Ensure fetch works in environments that might
 
 const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
 const VERCEL_API_URL = "https://api.vercel.com/v9/projects";
-const IS_VERCEL = process.env.VERCEL === "TRUE";
+const IS_VERCEL = process.env.VERCEL === "true";
 
 let playwright, chromium;
 
