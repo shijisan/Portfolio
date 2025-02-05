@@ -44,7 +44,7 @@ async function takeScreenshot(url) {
       ? {
           args: chromium.default.args,
           executablePath: await chromium.default.executablePath(),
-          headless: chromium.default.headless,
+          headless: chromium.default.headless === "true", // Ensure it's a boolean
         }
       : { headless: true };
 
