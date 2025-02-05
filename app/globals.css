@@ -2,20 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Roboto Flex", Arial, Helvetica, sans-serif;
+}
+
+.poppins {
+  font-family: "Poppins";
+}
+
+.img-bg {
+  background-image: url("../public/grid.svg");
+  background-size: cover;
+}
+
+
+
+
+@layer components {
+  body {
+    @apply bg-stone-800 text-white
+  }
+
+  .btn-primary {
+    @apply bg-pink-600 text-white font-medium text-sm inline-flex justify-center items-center py-2 px-4 hover:brightness-105 transition-all rounded
+  }
+
+  .btn-outline {
+    @apply border-pink-500 border-2 text-pink-500 font-medium text-sm inline-flex justify-center items-center py-2 px-4 hover:bg-opacity-10 bg-opacity-0 bg-pink-500 transition-all rounded
+  }
+
+  .form-group label{
+    @apply text-white inline-flex items-center mb-1 text-sm font-medium
+  }
+
+  .form-group input.verify{
+    @apply px-4 py-2 w-full rounded-t text-neutral-800 placeholder-shown:border-none
+  }
+
+  .form-group input{
+    @apply px-4 py-2 w-full rounded-t border-b-4 border-pink-500	 placeholder-shown:border-stone-300 text-neutral-800
+  }
+
+  .form-group textarea{
+    @apply text-neutral-800 py-2 px-4
+  }
+
+
 }
