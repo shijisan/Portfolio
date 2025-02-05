@@ -1,0 +1,6 @@
+{
+   "env": {
+     "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "true"
+   }
+ }
+ 
