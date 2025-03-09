@@ -77,7 +77,7 @@ export default function Home() {
         <div className="md:max-w-[90vw] w-full h-full min-h-screen">
           <div className="flex flex-col md:justify-normal justify-center">
             {/* Hero Section */}
-            <section className="min-h-screen md:text-start text-center flex md:flex-row flex-col-reverse w-full">
+            <section className="min-h-screen md:text-start text-center flex md:flex-row flex-col-reverse w-full md:justify-normal justify-center">
               <div className="flex flex-col justify-center items-center md:w-1/2 w-full">
                 <div className="max-w-96 w-full md:p-0 p-4">
                   <div className="poppins">
@@ -126,10 +126,10 @@ export default function Home() {
                   alt="Christian James Santos' Profile Picture"
                 />
                 <div className="absolute">
-                  <div className="w-full rounded-lg bg-pink-600 drop-shadow-md inline-flex items-center py-3 px-4">
+                  <div className="w-full rounded-full md:rounded-lg bg-pink-600 drop-shadow-md inline-flex items-center py-3 md:px-4 px-2">
                     <div className="rounded-full size-2 bg-green-400 me-2"></div>
                     <div className="rounded-full size-2 animate-ping bg-green-400 absolute"></div>
-                    <h2>
+                    <h2 className="md:text-base text-xs">
                       <span className="font-medium poppins">status:</span> Open to Opportunities
                     </h2>
                   </div>
