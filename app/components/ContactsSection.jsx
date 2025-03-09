@@ -45,7 +45,7 @@ export default function ContactsSection() {
    };
 
    return (
-      <section className="flex flex-row justify-center min-h-screen items-center">
+      <section className="flex flex-row justify-center min-h-screen items-center"  id="contact">
          <form onSubmit={handleSubmit} className="rounded-lg bg-stone-500 w-full min-h-96 max-w-3xl shadow flex flex-row">
 
             <div className="md:w-2/6 md:block hidden">

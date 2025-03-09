@@ -7,6 +7,8 @@ const IS_VERCEL = process.env.VERCEL === "true";
 
 let playwright, chromium;
 
+console.log(IS_VERCEL);
+
 // Dynamically import the correct browser engine
 if (IS_VERCEL) {
   playwright = await import("playwright-core");
